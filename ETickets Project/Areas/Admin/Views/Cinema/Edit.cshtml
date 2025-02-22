@@ -1,0 +1,66 @@
+﻿@model ETickets_Project.Models.Cinema
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Cinema</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CinemaID" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <br>
+            <div class="form-group">
+                <label asp-for="CinemaLogo" class="control-label"></label>
+                <input type="file" asp-for="CinemaLogo" class="form-control" />
+                <div class="actor-badge d-flex align-items-center m-1">
+                    <img src="~/images/cinema/@Model.CinemaLogo"  class="actor-img">
+                </div>
+                <span asp-validation-for="CinemaLogo" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<style>
+    .actor-img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #ffc107;
+    }
+</style>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

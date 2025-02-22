@@ -1,0 +1,137 @@
+﻿<div class="card movie-card shadow-lg border-0 rounded-4 overflow-hidden bg-dark text-white mt-4">
+    <div class="row g-0">
+        <!-- Movie Poster -->
+        <div class="col-md-5 position-relative">
+            <img src="~/images/movies/@Model.ImgUrl"
+                 alt="@Model.Name"
+                 class="img-fluid w-100 h-100 object-fit-cover rounded-start border-end border-warning" />
+        </div>
+
+        <!-- Movie Details -->
+        <div class="col-md-7 p-4 d-flex flex-column justify-content-between">
+            <div>
+                <h2 class="text-warning fw-bold">@Model.Name</h2>
+                <p class="text-light opacity-75">@Model.Description</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-2">
+                    <span class="fw-bold text-warning">🎭 Category:</span>
+                    @if (Model.Category != null)
+                    {
+                        <a href="/Home/ShowAllMoviesInSameCategory?categoryName=@Model.Category.Name">
+                            <span class="badge bg-secondary">@Model.Category.Name</span>
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="text-danger">No Category</span>
+                    }
+                </div>
+                <div class="col-md-6 mb-2">
+                    <span class="fw-bold text-warning">💰 Price:</span>
+                    <span class="badge bg-success">$@Model.Price</span>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <span class="fw-bold text-warning">🎬 Cinema:</span>
+                    @if (Model.Cinema != null)
+                    {
+                        <span class="badge bg-primary">@Model.Cinema.Name</span>
+                    }
+                    else
+                    {
+                        <span class="text-danger">No Cinema</span>
+                    }
+                </div>
+                <div class="col-md-6 mb-2">
+                    <span class="fw-bold text-warning">📅 Start Date:</span>
+                    <span class="text-info fw-bold">@Model.StartDate.ToString("yyyy-MM-dd")</span>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <span class="fw-bold text-warning">⏳ End Date:</span>
+                    <span class="text-danger fw-bold">@Model.EndDate.ToString("yyyy-MM-dd")</span>
+                </div>
+            </div>
+
+            <!-- Actors Section -->
+            <div class="mt-3">
+                <p class="fw-bold text-warning">🌟 Actors:</p>
+                <div class="d-flex flex-wrap align-items-center">
+                    @foreach (var actor in ViewBag.Actors)
+                    {
+                        <div class="actor-badge d-flex align-items-center m-1">
+                            <img src="~/images/actors/@actor.Actor.ProfilePicture" alt="@actor.Actor.FirstName" class="actor-img">
+                            <span class="badge bg-light text-dark ms-2">@actor.Actor.FirstName</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    body {
+        background-color: #121212;
+        color: white;
+    }
+
+    /* تحسين شكل البطاقة */
+    .movie-card {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(255, 193, 7, 0.4);
+        background-color: #121212 !important;
+    }
+
+        .movie-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 15px rgba(255, 193, 7, 0.6);
+        }
+
+    .object-fit-cover {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* تحسين شكل الممثلين */
+    .actor-badge {
+        display: flex;
+        align-items: center;
+        padding: 6px 10px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50px;
+        transition: transform 0.3s ease-in-out, background-color 0.3s;
+        cursor: pointer;
+    }
+
+        .actor-badge:hover {
+            transform: scale(1.1);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+    .actor-img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #ffc107;
+    }
+
+    /* تحسين عرض النصوص */
+    .fw-bold {
+        font-size: 1rem;
+    }
+
+    /* تحسين الألوان */
+    .text-warning {
+        color: #ffc107 !important;
+    }
+
+    .text-info {
+        color: #17a2b8 !important;
+    }
+
+    .text-danger {
+        color: #e74c3c !important;
+    }
+</style>

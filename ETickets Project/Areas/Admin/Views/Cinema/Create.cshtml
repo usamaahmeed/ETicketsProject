@@ -1,0 +1,36 @@
+﻿@model Cinema
+
+<div class="container my-3">
+    <div class="row mb-3">
+        <div class="d-flex justify-content-between align-content-center">
+            <div class="display-6"><a href="/Cinema/Index"><i class="bi bi-arrow-left text-dark"></i></a> Create New Cinema</div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+      
+        <form asp-action="Create" asp-controller="Cinema" asp-area="Admin"> 
+            <div class="mb-3">
+                 <label asp-for="Name" class="form-label">Cinema Name</label>
+                 <input asp-for="Name" class="form-control" />
+                 <span class="text-danger" asp-validation-for="Name"></span>
+             </div>
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label">Cinema Description</label>
+                <input asp-for="Description" class="form-control" />
+                <span class="text-danger" asp-validation-for="Description"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Address" class="form-label">Cinema Address</label>
+                <input asp-for="Address" class="form-control" />
+                <span class="text-danger" asp-validation-for="Address"></span>
+            </div>
+           
+             <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial.cshtml" />
+}
