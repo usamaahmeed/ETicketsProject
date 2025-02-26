@@ -32,17 +32,20 @@
                     <span class="fw-bold text-warning">💰 Price:</span>
                     <span class="badge bg-success">$@Model.Price</span>
                 </div>
-                <div class="col-md-6 mb-2">
-                    <span class="fw-bold text-warning">🎬 Cinema:</span>
-                    @if (Model.Cinema != null)
-                    {
-                        <span class="badge bg-primary">@Model.Cinema.Name</span>
-                    }
-                    else
-                    {
-                        <span class="text-danger">No Cinema</span>
-                    }
-                </div>
+                @foreach(var cinema in ViewBag.CinemaMovies){
+                    <div class="col-md-6 mb-2">
+                        <span class="fw-bold text-warning">🎬 Cinema:</span>
+                        @if (cinema != null)
+                        {
+                            <span class="badge bg-primary">@cinema.Cinema.Name</span>
+                        }
+                        else
+                        {
+                            <span class="text-danger">No Cinema</span>
+                        }
+                    </div>
+                }
+                
                 <div class="col-md-6 mb-2">
                     <span class="fw-bold text-warning">📅 Start Date:</span>
                     <span class="text-info fw-bold">@Model.StartDate.ToString("yyyy-MM-dd")</span>

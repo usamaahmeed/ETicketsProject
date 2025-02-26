@@ -22,6 +22,8 @@ namespace ETickets_Project
             builder.Services.AddScoped<IMovieRepository, MovieRepository>();
             builder.Services.AddScoped<IActorMoviesRepository, ActorMoviesRepository>();
             builder.Services.AddScoped<IActorRepository, ActorRepository>();
+            builder.Services.AddScoped<ICinemaMovieRepository, CinemaMovieRepository>();
+
 
 
 

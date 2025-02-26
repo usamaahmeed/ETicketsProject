@@ -16,7 +16,7 @@ namespace ETickets_Project.Models
         [Required]
         public string Address { get; set; }
 
-        // علاقة 1:N مع الأفلام
-        public List<Movie> Movies { get; set; } = new List<Movie>();
+        // Many-to-Many with Movies
+        public List<CinemaMovie> CinemaMovies { get; set; } 
     }
 }

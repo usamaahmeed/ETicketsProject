@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ETickets_Project.Models
 {
@@ -24,20 +24,17 @@ namespace ETickets_Project.Models
 
         public DateTime EndDate { get; set; }
 
-        public string MovieStatus { get; set; } // Available (true) or Unavailable (false)
+        public string MovieStatus { get; set; } // Available, Coming Soon, etc.
 
-        // Foreign Keys
-        public int CinemaId { get; set; }
-        [ForeignKey("CinemaId")]
-        public Cinema Cinema { get; set; }
-
+        // Foreign Key for Category
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
 
-
+        // Many-to-Many with Cinemas
+        public List<CinemaMovie> CinemaMovies { get; set; }
 
         // Many-to-Many with Actors
-        public List<ActorMovie> ActorMovies { get; set; }
+        public List<ActorMovie> ActorMovies { get; set; } 
     }
 }

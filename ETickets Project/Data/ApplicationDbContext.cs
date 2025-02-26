@@ -18,6 +18,8 @@ namespace ETickets_Project.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Actor> Actors { get; set; }
         public DbSet<ActorMovie> ActorMovies { get; set; }
+        public DbSet<CinemaMovie> CinemaMovies { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,6 +36,18 @@ namespace ETickets_Project.Data
                 .HasOne(am => am.Movie)
                 .WithMany(m => m.ActorMovies)
                 .HasForeignKey(am => am.MovieID);
+
+            modelBuilder.Entity<CinemaMovie>()
+                .HasKey(cm => new { cm.CinemaID, cm.MovieID });
+
+            modelBuilder.Entity<CinemaMovie>()
+                .HasOne(cm => cm.Cinema)
+                .WithMany(c => c.CinemaMovies)
+                .HasForeignKey(cm => cm.CinemaID);
+            modelBuilder.Entity<CinemaMovie>()
+                .HasOne(cm => cm.Movie)
+                .WithMany(m => m.CinemaMovies)
+                .HasForeignKey(cm => cm.MovieID);
         }
 
     }

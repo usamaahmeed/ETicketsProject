@@ -21,9 +21,38 @@
                             <a href="/Home/ShowAllMoviesInSameCategory?categoryName=@item.Category.Name" class="text-decoration-none text-warning">@item.Category.Name</a>
                         </h6>
                         <h6 class="fw-bold text-danger">
-                            🎭 Cinema:
-                            <a href="/Home/ShowAllMoviesInSameCinema?cinemaName=@item.Cinema.Name" class="text-decoration-none text-warning">@item.Cinema.Name</a>
+                            🎭 Cinemas:
+
+                            @{
+                                var cinemaMovies = ViewBag.CinemaMovies;
+                            }
+                           @if(cinemaMovies != null){
+
+                            @for (int i = 0; i < cinemaMovies!.Count; i++)
+                            {
+
+                                if (cinemaMovies[i].MovieID == item.MovieID)
+                                {
+                                    <a href="/Home/ShowAllMoviesInSameCinema?cinemaName=@cinemaMovies[i].Cinema.Name"
+                                    class="text-decoration-none text-warning">
+                                        @cinemaMovies[i].Cinema.Name
+                                    </a>
+
+                                }
+
+                                if (cinemaMovies[i].MovieID == item.MovieID && cinemaMovies != null )
+
+                                {
+                                    <span class="text-light"> | </span>
+                                }
+                            }
+                            }
+                                else{
+                                <span class="text-danger">No Cinema</span>
+                            }
                         </h6>
+
+
                         <p class="text-success fw-bold">💲 Price: $@item.Price</p>
                         <p class="text-success fw-bold">📅 Start Date: @item.StartDate.ToString("yyyy-MM-dd")</p>
                         <p class="text-success fw-bold">📅 End Date: @item.EndDate.ToString("yyyy-MM-dd")</p>
